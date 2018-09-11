@@ -273,6 +273,8 @@ const getImage = (node: HTMLElement | SVGSVGElement, resourceLoader: ResourceLoa
         node instanceof node.ownerDocument.defaultView.SVGSVGElement ||
         node instanceof SVGSVGElement
     ) {
+        node.setAttribute("width", node.getBoundingClientRect().width);
+        node.setAttribute("height", node.getBoundingClientRect().height);
         const s = new XMLSerializer();
         return resourceLoader.loadImage(
             `data:image/svg+xml,${encodeURIComponent(s.serializeToString(node))}`
